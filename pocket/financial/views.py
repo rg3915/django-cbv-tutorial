@@ -16,8 +16,12 @@ from django.views.generic import (
 from pocket.crm.models import Person
 
 from .forms import ExpenseEditForm, ExpenseForm
+from .mixins import (
+    ExpenseContextDataMixin,
+    ExpenseFormKwargsMixin,
+    SearchMixin
+)
 from .models import Expense
-from .mixins import SearchMixin, ExpenseContextDataMixin, ExpenseFormKwargsMixin
 
 
 class ExpenseListView(LRM, ExpenseContextDataMixin, SearchMixin, ListView):
