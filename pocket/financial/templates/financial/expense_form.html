@@ -1,0 +1,25 @@
+<!-- expense_form.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Despesa</h1>
+<div class="row">
+  <div class="col-6">
+    <form class="form-horizontal" action="." method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-6">
+    <h2>Despesas do Huguinho</h2>
+    <ul>
+      {% for expense in huguinho_expenses %}
+      <li>{{ expense }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock content %}

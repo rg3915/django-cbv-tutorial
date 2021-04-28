@@ -1,0 +1,82 @@
+<!-- expense_list.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Lista de {{ verbose_name_plural }}</h1>
+
+  <span class="pull-right">{{ object_list.count }}
+    {% if object_list.count == 1 %}
+      {{ verbose_name }}
+    {% else %}
+      {{ verbose_name_plural }}
+  {% endif %}</span>
+
+  <div class="row">
+          <div class="col-md-auto">
+            <a class="btn btn-primary" href="{% url 'financial:expense_create' %}">
+              <i class="fa fa-plus"></i>
+              Adicionar
+            </a>
+          </div>
+          <div class="col">
+            <form action="." method="GET">
+              <div class="row">
+                <div class="col p-ari-5">
+                  <input name="search" class="form-control mb-2" type="text" placeholder="Busca..." />
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-success mb-2" type="submit">OK</button>
+                  <button class="btn btn-link mb-2">Limpar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Descrição</th>
+        <th>Pago a</th>
+        <th>Valor</th>
+        <th>Data de pagamento</th>
+        <th>Pago</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+        <tr>
+          <td>
+            <a href="{{ object.get_absolute_url }}">{{ object.description }}</a>
+          </td>
+          <td>{{ object.person|default:'---' }}</td>
+          <td>{{ object.value }}</td>
+          <td>{{ object.payment_date|date:'d/m/Y'|default:'---' }}</td>
+          <td>
+            {% if object.paid %}
+              <i class="fa fa-check ok"></i>
+            {% else %}
+              <i class="fa fa-times-circle no"></i>
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'financial:expense_update' object.pk %}">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="{% url 'financial:expense_delete' object.pk %}" style="padding-left: 7px">
+              <i class="fa fa-close no"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>{{ total }}</td>
+      </tr>
+    </tfoot>
+  </table>
+{% endblock content %}
