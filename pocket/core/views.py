@@ -1,13 +1,28 @@
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import ListView, TemplateView, View
 
-# @login_required
-# def index(request):
-#     return HttpResponse('<h1>Django</h1><p>Página simples.</p>')
+from pocket.financial.models import Expense
+
+# class IndexView(View):
+
+#     def get(self, request):
+#         template_name = 'index.html'
+#         expense_list = Expense.objects.all()
+#         context = {'expense_list': expense_list}
+#         return render(request, template_name, context)
 
 
-# @login_required
-def index(request):
+# class IndexView(TemplateView):
+#     model = Expense
+#     template_name = 'index.html'
+
+#     def get_context_data(self, **kwargs):
+#         expense_list = Expense.objects.all()
+#         context = {'expense_list': expense_list}
+#         return context
+
+
+class IndexView(ListView):
+    model = Expense
     template_name = 'index.html'
-    return render(request, template_name)
+    context_object_name = 'expense_list'

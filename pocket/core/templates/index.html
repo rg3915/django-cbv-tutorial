@@ -16,4 +16,32 @@
   <a href="https://github.com/rg3915/django-cbv-tutorial" target="_blank">github.com/rg3915/django-cbv-tutorial</a>
 </div>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th>Descrição</th>
+      <th>Pago a</th>
+      <th>Valor</th>
+      <th>Data de pagamento</th>
+      <th>Pago</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in expense_list %}
+      <tr>
+        <td>{{ object.description }}</td>
+        <td>{{ object.person|default:'---' }}</td>
+        <td>{{ object.value }}</td>
+        <td>{{ object.payment_date|date:'d/m/Y'|default:'---' }}</td>
+        <td>
+          {% if object.paid %}
+            <i class="fa fa-check ok"></i>
+          {% else %}
+            <i class="fa fa-times-circle no"></i>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock content %}
