@@ -26,6 +26,9 @@ from .models import Expense
 
 class ExpenseListView(LRM, ExpenseContextDataMixin, SearchMixin, ListView):
     model = Expense
+    # context_object_name = 'expense_list'
+    # paginate_by = 10
+    # template_name = 'expense_list.html'
 
     # @method_decorator(login_required)
     # def dispatch(self, request, *args, **kwargs):
