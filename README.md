@@ -1,3 +1,8 @@
+# django-cbv-tutorial
+
+Django Class Based View Tutorial.
+
+
 ## This project was done with:
 
 * [Python 3.8.9](https://www.python.org/)
@@ -44,3 +49,10 @@ pip install -r requirements.txt
 python contrib/env_gen.py
 python manage.py migrate
 ```
+
+
+## Links
+
+https://docs.djangoproject.com/en/3.1/ref/class-based-views/
+
+https://ccbv.co.uk/
