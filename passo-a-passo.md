@@ -17,6 +17,15 @@ python manage.py migrate
 python manage.py createsuperuser --username="admin" --email="admin@email.com"
 ```
 
+```python
+python manage.py shell_plus
+
+persons = ['Huguinho', 'Zezinho', 'Luizinho']
+
+for person in persons:
+    Person.objects.create(first_name=person)
+```
+
 Editar `core/views.py`
 
 View
