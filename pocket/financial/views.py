@@ -22,36 +22,3 @@ from .forms import ExpenseEditForm, ExpenseForm
 #     SearchMixin
 # )
 from .models import Expense
-
-
-class ExpenseListView(ListView):
-    model = Expense
-    # context_object_name = 'expense_list'
-    # paginate_by = 10
-    # template_name = 'expense_list.html'
-
-
-class ExpenseNotPaidListView(ListView):
-    model = Expense
-
-    def get_queryset(self):
-        return Expense.objects.filter(paid=False)
-
-
-class ExpenseDetailView(DetailView):
-    model = Expense
-
-
-class ExpenseCreateView(CreateView):
-    model = Expense
-    form_class = ExpenseForm
-
-
-class ExpenseUpdateView(UpdateView):
-    model = Expense
-    form_class = ExpenseEditForm
-
-
-class ExpenseDeleteView(DeleteView):
-    model = Expense
-    success_url = reverse_lazy('expense:expense_list')
