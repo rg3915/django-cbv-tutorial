@@ -73,6 +73,19 @@ class ExpenseCreateView(ExpenseFormKwargsMixin, CreateView):
         form = super().post(request, *args, **kwargs)
         return form
 
+    def form_valid(self, form):
+        # form.send_email()
+        print('Enviar email')
+        return super(ExpenseCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('financial:expense_list')
+
+    def get_form_class(self):
+        if self.request.user.is_authenticated:
+            return ExpenseEditForm
+        return ExpenseForm
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         print('>>>', kwargs)
@@ -81,19 +94,6 @@ class ExpenseCreateView(ExpenseFormKwargsMixin, CreateView):
         print()
         print('files:', kwargs.get('files'))
         return kwargs
-
-    def get_form_class(self):
-        if self.request.user.is_authenticated:
-            return ExpenseEditForm
-        return ExpenseForm
-
-    def form_valid(self, form):
-        # form.send_email()
-        print('Enviar email')
-        return super(ExpenseCreateView, self).form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy('financial:expense_list')
 
 
 class ExpenseUpdateView(ExpenseFormKwargsMixin, UpdateView):
