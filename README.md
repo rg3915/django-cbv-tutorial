@@ -56,6 +56,7 @@ python manage.py migrate
 
 ![img/post.png](img/post.png)
 
+
 ## Links
 
 https://docs.djangoproject.com/en/3.1/ref/class-based-views/
