@@ -73,6 +73,15 @@ class ExpenseCreateView(ExpenseFormKwargsMixin, CreateView):
         form = super().post(request, *args, **kwargs)
         return form
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        print('>>>', kwargs)
+        print()
+        print('data:', kwargs.get('data'))
+        print()
+        print('files:', kwargs.get('files'))
+        return kwargs
+
     def get_form_class(self):
         if self.request.user.is_authenticated:
             return ExpenseEditForm

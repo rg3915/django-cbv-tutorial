@@ -50,6 +50,11 @@ python contrib/env_gen.py
 python manage.py migrate
 ```
 
+## Ilustração
+
+![img/get.png](img/get.png)
+
+![img/post.png](img/post.png)
 
 ## Links
 

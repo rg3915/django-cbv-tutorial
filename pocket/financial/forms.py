@@ -19,7 +19,7 @@ class ExpenseForm(forms.ModelForm):
 
     class Meta:
         model = Expense
-        fields = ('description', 'payment_date', 'person', 'value')
+        fields = ('description', 'payment_date', 'person', 'value', 'payment_voucher')  # noqa E501
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')

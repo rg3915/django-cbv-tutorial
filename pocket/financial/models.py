@@ -18,6 +18,12 @@ class Expense(TimeStampedModel):
     )
     value = models.DecimalField('valor', max_digits=7, decimal_places=2)
     paid = models.BooleanField('pago', default=False)
+    payment_voucher = models.ImageField(
+        'comprovante',
+        upload_to='',
+        null=True,
+        blank=True
+    )
 
     class Meta:
         ordering = ('-payment_date',)
