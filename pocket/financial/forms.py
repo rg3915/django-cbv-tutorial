@@ -29,6 +29,8 @@ class ExpenseForm(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
         if self.fields.get('paid'):
             self.fields['paid'].widget.attrs['class'] = None
+        if self.fields.get('payment_voucher'):
+            self.fields['payment_voucher'].widget.attrs['class'] = None
 
 
 class ExpenseEditForm(ExpenseForm):
