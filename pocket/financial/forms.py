@@ -22,13 +22,15 @@ class ExpenseForm(forms.ModelForm):
         fields = ('description', 'payment_date', 'person', 'value', 'payment_voucher')  # noqa E501
 
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        print('User:', self.request.user)
+        # self.request = kwargs.pop('request')
+        # print('User:', self.request.user)
         super(ExpenseForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
         if self.fields.get('paid'):
             self.fields['paid'].widget.attrs['class'] = None
+        if self.fields.get('payment_voucher'):
+            self.fields['payment_voucher'].widget.attrs['class'] = None
 
 
 class ExpenseEditForm(ExpenseForm):
