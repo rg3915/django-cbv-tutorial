@@ -46,6 +46,8 @@ class IndexView(View):
         return render(request, template_name, context)
 ```
 
+![img/get.png](img/get.png)
+
 TemplateView
 
 ```python
@@ -164,6 +166,9 @@ class SearchMixin:
 
 
 ExpenseCreateView
+
+![img/post.png](img/post.png)
+
 
 get_form_kwargs
 
