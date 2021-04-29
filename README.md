@@ -62,3 +62,5 @@ python manage.py migrate
 https://docs.djangoproject.com/en/3.1/ref/class-based-views/
 
 https://ccbv.co.uk/
+
+http://slides.com/regissilva/django-python-triangulo#/12
