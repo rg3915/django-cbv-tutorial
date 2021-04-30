@@ -19,7 +19,7 @@ from .forms import ExpenseEditForm, ExpenseForm
 from .mixins import (
     ExpenseContextDataMixin,
     ExpenseFormKwargsMixin,
-    SearchMixin
+    SearchMixin,
 )
 from .models import Expense
 
@@ -27,7 +27,7 @@ from .models import Expense
 class ExpenseListView(LRM, ExpenseContextDataMixin, SearchMixin, ListView):
     model = Expense
     # context_object_name = 'expense_list'
-    # paginate_by = 10
+    paginate_by = 5
     # template_name = 'expense_list.html'
 
     # @method_decorator(login_required)
@@ -41,9 +41,11 @@ class ExpenseListView(LRM, ExpenseContextDataMixin, SearchMixin, ListView):
 
 class ExpenseNotPaidListView(ExpenseContextDataMixin, SearchMixin, ListView):
     model = Expense
+    paginate_by = 5
 
     def get_queryset(self):
-        return Expense.objects.filter(paid=False)
+        queryset = super().get_queryset()
+        return queryset.filter(paid=False)
 
 
 class ExpenseDetailView(DetailView):
@@ -53,6 +55,7 @@ class ExpenseDetailView(DetailView):
 class ExpenseCreateView(ExpenseFormKwargsMixin, CreateView):
     model = Expense
     form_class = ExpenseForm
+    success_url = reverse_lazy('financial:expense_list')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -78,8 +81,8 @@ class ExpenseCreateView(ExpenseFormKwargsMixin, CreateView):
         print('Enviar email')
         return super(ExpenseCreateView, self).form_valid(form)
 
-    def get_success_url(self):
-        return reverse_lazy('financial:expense_list')
+    # def get_success_url(self):
+    #     return reverse_lazy('financial:expense_list')
 
     def get_form_class(self):
         if self.request.user.is_authenticated:

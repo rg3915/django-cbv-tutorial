@@ -10,7 +10,8 @@ class SearchMixin:
             return queryset.filter(
                 Q(person__first_name__icontains=search) |
                 Q(person__last_name__icontains=search) |
-                Q(person__email__icontains=search)
+                Q(person__email__icontains=search) |
+                Q(description__icontains=search)
             )
         return queryset
 

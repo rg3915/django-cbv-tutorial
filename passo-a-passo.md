@@ -106,7 +106,7 @@ class ExpenseUpdateView(UpdateView):
 
 class ExpenseDeleteView(DeleteView):
     model = Expense
-    success_url = reverse_lazy('expense:expense_list')
+    success_url = reverse_lazy('financial:expense_list')
 ```
 
 ExpenseListView
