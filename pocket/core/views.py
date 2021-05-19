@@ -13,7 +13,7 @@ from pocket.financial.models import Expense
 
 
 # class IndexView(TemplateView):
-#     model = Expense
+#     model = Expense  # na verdade isso aqui não tem utilidade
 #     template_name = 'index.html'
 
 #     def get_context_data(self, **kwargs):
