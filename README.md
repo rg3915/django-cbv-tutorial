@@ -2,6 +2,11 @@
 
 Django Class Based View Tutorial.
 
+<a href="https://youtu.be/C7Ecugxa7ic">
+    <img src="img/youtube.png">
+</a>
+
+
 
 ## This project was done with:
 
